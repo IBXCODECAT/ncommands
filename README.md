@@ -51,7 +51,41 @@ To get these commands up and running on your system:
 Currently available commands in `ncommands`:
 
 <details>
-<summary><h3>`ntree` - Visual File Tree Viewer</h3></summary>
+<summary><h2>`nhex` - Hexadecimal File Viewer</h2></summary>
+
+A custom implementation of a hexadecimal viewer that prints the binary content of a file in a human-readable hex + ASCII format. Automatically adapts its layout based on your terminal width for improved readability.
+
+#### **Features:**
+
+* Displays file contents in both hexadecimal and ASCII side-by-side.
+* Automatically adjusts bytes per line based on terminal width.
+* Handles non-printable characters gracefully with . in ASCII view.
+* Dynamically allocates memory for performance and flexibility.
+* Provides clean formatting with offset addresses, aligned output, and center spacing.
+
+#### **Usage:**
+
+```bash
+nhex <file_path>  # Displays the binary content of <file_path> in hex format
+```
+
+Example Output:
+
+```bash
+00000000: 7F 45 4C 46 02 01 01 00  00 00 00 00 00 00 00 00  |.ELF............|
+00000010: 02 00 3E 00 01 00 00 00  80 00 40 00 00 00 00 00  |..>.......@.....|
+```
+
+#### **Notes:**
+
+* If the output is redirected or piped (not a terminal), a default width of 16 bytes per line is used.
+* Terminal widths that are too small will default to a minimum of 4 bytes per line.
+* Output lines show the byte offset, a hex dump, and ASCII equivalents.
+
+</details>
+
+<details>
+<summary><h2>`ntree` - Visual File Tree Viewer</h2></summary>
 
 A custom implementation of the `tree` command, displaying directory contents in a clear, graphical tree format. It sorts directories before files and then alphabetically, providing an intuitive overview of your file system.
 
@@ -68,3 +102,17 @@ A custom implementation of the `tree` command, displaying directory contents in 
 ```bash
 ntree             # Displays the tree for the current directory
 ntree /path/to/dir # Displays the tree for a specific directory
+```
+
+Example Output:
+
+```bash
+.
+├── nhex
+│   └── nhex.c
+├── ntree
+│   └── ntree.c
+├── .gitattributes
+├── LICENSE
+└── README.m
+```
